@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robinhood Faucecat ($FAUCECAT) — The Faucet That Robs The Rich</title>
+<meta name="description" content="$FAUCECAT — a green-hooded cat taps the whales' liquidity and lets it drip to everyone else. The people's testnet faucet, now on-chain.">
+<link rel="icon" type="image/jpeg" href="assets/faucecat-mascot.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="drip-cursor" id="dripCursor"></div>
+
+<!-- top terminal ticker -->
+<div class="termbar" aria-hidden="true">
+  <div class="termbar-track" id="termTrack"></div>
+</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <img src="assets/faucecat-mascot.jpg" alt="Faucecat" class="brand-logo">
+      <span class="brand-text">FAUCECAT<span class="brand-dot">.</span></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#claim">Faucet</a>
+      <a href="#lore">The Legend</a>
+      <a href="#stats">Stats</a>
+      <a href="#market">Chart</a>
+      <a href="#buy">How To Buy</a>
+    </nav>
+
+    <div class="nav-right">
+      <span class="net-status"><i class="dot"></i> TESTNET ONLINE</span>
+      <a href="#buy" class="btn btn-primary nav-buy">Buy $FAUCECAT</a>
+      <button class="burger" id="burgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="grid-floor"></div>
+      <div class="glow glow-purple"></div>
+      <div class="glow glow-green"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">faucet.testnet.chain.faucecat &mdash; unofficial, extremely official-looking</p>
+        <h1>The faucet that <span class="hl">robs the rich</span><br>and drips on the poor.</h1>
+        <p class="lede">One cat. One green hood. One municipal-grade brass tap stolen from a whale's
+          liquidity pool. Every visitor gets a drip of $FAUCECAT &mdash; no permission asked, no
+          gas fee refused.</p>
+
+        <div class="ca-plaque" data-copy>
+          <span class="ca-label">CONTRACT</span>
+          <span class="ca-value" id="caValueHero">NOT MINTED YET</span>
+          <button class="copy-btn" data-copy-btn aria-label="Copy contract address">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg>
+          </button>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="#claim" class="btn btn-primary btn-lg">Claim a Drip</a>
+          <a href="#buy" class="btn btn-ghost btn-lg" data-buy-link>Buy Now</a>
+          <a href="#market" class="btn btn-ghost btn-lg" data-chart-link>View Chart</a>
+        </div>
+
+        <div class="hero-social">
+          <a href="#" class="icon-btn" data-x-link aria-label="X / Twitter">𝕏</a>
+          <a href="#" class="icon-btn" data-tg-link aria-label="Telegram">TG</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="faucet-rig">
+          <div class="mascot-frame">
+            <img src="assets/faucecat-mascot.jpg" alt="Faucecat mascot drinking purple liquid from a green faucet" class="mascot-img">
+            <div class="drips" id="heroDrips"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">scroll to claim ↓</div>
+  </section>
+
+  <!-- CLAIM / FAUCET UI -->
+  <section class="claim" id="claim">
+    <div class="section-head">
+      <span class="tag">§ 01 — THE FAUCET</span>
+      <h2>Claim your testnet drip</h2>
+      <p class="section-sub">This is a meme faucet, not a real one. No wallet is ever connected, no
+        funds ever move &mdash; it just makes the cat happy and the counter go up. Consider it
+        vibes-as-a-service.</p>
+    </div>
+
+    <div class="faucet-panel">
+      <div class="faucet-panel-row">
+        <label class="fp-label" for="fauxAddress">Recipient address</label>
+        <input class="fp-input" id="fauxAddress" type="text" placeholder="0xPourSomeSolHere...">
+      </div>
+      <div class="faucet-panel-row two-col">
+        <div>
+          <label class="fp-label">Network</label>
+          <div class="fp-select">Solana Mainnet <span class="chev">▾</span></div>
+        </div>
+        <div>
+          <label class="fp-label">Drip size</label>
+          <div class="fp-select">1 splash (fixed) <span class="chev">▾</span></div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block" id="claimBtn">Request Drip</button>
+      <p class="fp-note" id="claimNote">Rate limit: unlimited. Trust: minimal. Purpose: comedic.</p>
+    </div>
+
+    <div class="faucet-log">
+      <div class="faucet-log-head">live drip log</div>
+      <ul id="dripLog" class="faucet-log-list"></ul>
+    </div>
+  </section>
+
+  <!-- LORE -->
+  <section class="lore" id="lore">
+    <div class="section-head">
+      <span class="tag">§ 02 — THE LEGEND</span>
+      <h2>The Legend of the Green Hood</h2>
+    </div>
+
+    <div class="lore-grid">
+      <div class="lore-card">
+        <div class="lore-card-icon">🚰</div>
+        <h3>The Tap</h3>
+        <p>Somewhere behind a whale's cold wallet sits a brass faucet, installed by their own
+          liquidity engineers to "release funds responsibly." One night, a tabby cat in a green
+          hood picked the lock, turned the handle, and never let go.</p>
+      </div>
+      <div class="lore-card">
+        <div class="lore-card-icon">💜</div>
+        <h3>The Drip</h3>
+        <p>What comes out isn't water. It's distilled purple liquidity &mdash; thick, glowing,
+          faintly humming at a frequency only retail can hear. Every drop poured is a drop the
+          whale didn't get to dump on you.</p>
+      </div>
+      <div class="lore-card">
+        <div class="lore-card-icon">🎩</div>
+        <h3>The Hood</h3>
+        <p>The hood isn't armor. It's a filing cabinet with a feather in it &mdash; official
+          paperwork that grants the wearer permission to redistribute liquidity from those who
+          have too much of it to those who refresh the chart too often.</p>
+      </div>
+    </div>
+
+    <blockquote class="case-quote">
+      "We audited the faucet. We do not know how it works. We could not make it stop."
+      <cite>&mdash; internal memo, Whale Liquidity Dept., never actually sent</cite>
+    </blockquote>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats" id="stats">
+    <div class="section-head">
+      <span class="tag">§ 03 — ON-CHAIN VIBES</span>
+      <h2>The tap, by the numbers</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num" data-count="118420">0</div>
+        <div class="stat-label">Total Drips Dispensed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-count="37">0</div>
+        <div class="stat-label">Whales Taxed (allegedly)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-count="9412">0</div>
+        <div class="stat-label">Litres of Purple Liquid</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-count="1">0</div>
+        <div class="stat-label">Cats In The Hood</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE MARKET DATA -->
+  <section class="market" id="market">
+    <div class="section-head">
+      <span class="tag">§ 04 — LIVE MARKET</span>
+      <h2>Chart, straight from the pipe</h2>
+    </div>
+
+    <div class="market-panel" id="marketPanel">
+      <div class="market-row">
+        <div class="market-cell">
+          <span class="market-cell-label">Price</span>
+          <span class="market-cell-value" id="mPrice">—</span>
+        </div>
+        <div class="market-cell">
+          <span class="market-cell-label">24h Change</span>
+          <span class="market-cell-value" id="mChange">—</span>
+        </div>
+        <div class="market-cell">
+          <span class="market-cell-label">Market Cap</span>
+          <span class="market-cell-value" id="mCap">—</span>
+        </div>
+        <div class="market-cell">
+          <span class="market-cell-label">Liquidity</span>
+          <span class="market-cell-value" id="mLiq">—</span>
+        </div>
+      </div>
+      <p class="market-note" id="marketNote">Waiting for $FAUCECAT to mint &mdash; live data from
+        DexScreener will pour in automatically the moment there's a contract to point at.</p>
+      <a href="#" class="btn btn-ghost" data-chart-link target="_blank" rel="noopener">Open full chart ↗</a>
+    </div>
+  </section>
+
+  <!-- HOW TO BUY -->
+  <section class="buy" id="buy">
+    <div class="section-head">
+      <span class="tag">§ 05 — HOW TO BUY</span>
+      <h2>Turn the handle yourself</h2>
+    </div>
+
+    <div class="buy-steps">
+      <div class="buy-step">
+        <div class="buy-step-num">01</div>
+        <h3>Get a wallet</h3>
+        <p>Install Phantom or any Solana-compatible wallet. Fund it with a little SOL for gas.</p>
+      </div>
+      <div class="buy-step">
+        <div class="buy-step-num">02</div>
+        <h3>Grab some SOL</h3>
+        <p>Buy SOL on any exchange and send it to your wallet address.</p>
+      </div>
+      <div class="buy-step">
+        <div class="buy-step-num">03</div>
+        <h3>Head to the DEX</h3>
+        <p>Open the chart link above, connect your wallet, and paste the $FAUCECAT contract.</p>
+      </div>
+      <div class="buy-step">
+        <div class="buy-step-num">04</div>
+        <h3>Swap &amp; drip</h3>
+        <p>Confirm the swap. Congratulations, you are now legally part of the hood.</p>
+      </div>
+    </div>
+
+    <div class="ca-plaque ca-plaque-lg" data-copy>
+      <span class="ca-label">CONTRACT</span>
+      <span class="ca-value" id="caValueFooter">NOT MINTED YET</span>
+      <button class="copy-btn" data-copy-btn aria-label="Copy contract address">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/faucecat-mascot.jpg" alt="Faucecat" class="brand-logo">
+      <span>FAUCECAT</span>
+    </div>
+    <div class="footer-links">
+      <a href="#" data-x-link>X / Twitter</a>
+      <a href="#" data-tg-link>Telegram</a>
+      <a href="#" data-chart-link>Dexscreener</a>
+    </div>
+    <p class="footer-disclaimer">$FAUCECAT is a meme token made for fun. It has no affiliation with
+      Robinhood Markets, Inc. or any real faucet. DYOR.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
